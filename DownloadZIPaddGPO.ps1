@@ -28,4 +28,4 @@ Import-GPO -BackupId $GPOID -TargetName $GPO -Path $GPOLocation
 
 New-GPLink -Target $Target -Name $GPO -LinkEnabled Yes -Enforced Yes -Order 
 
-Remove-Item –path $Destination -Recurse
+#Remove-Item –path $Destination -Recurse
