@@ -25,7 +25,7 @@ Remove-Item –path $ZipFile
 New-GPO -Name $GPO
 
 Import-GPO -BackupId $GPOID -TargetName $GPO -Path $GPOLocation
-
-New-GPLink -Target $Target -Name $GPO -LinkEnabled Yes -Enforced Yes -Order 
+1
+New-GPLink -Target $Target -Name $GPO -LinkEnabled Yes -Enforced Yes -Order 1
 
 #Remove-Item –path $Destination -Recurse
