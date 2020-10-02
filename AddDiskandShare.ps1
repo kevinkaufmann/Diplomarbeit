@@ -9,6 +9,6 @@ Format-Volume -DriveLetter F -FileSystem NTFS -Confirm:$false
 mkdir F:\Share
 New-SmbShare -Name "Share" -Path "F:\Share" -ChangeAccess "Users" -FullAccess "Administrators","tonazzidemo.onmicrosoft.com\AAD DC Administrators"
 
-.\ChangeLocatonSettings.ps1
+invoke-expression -Command .\ChangeLocatonSettings.ps1
 
-.\DownloadZIPaddGPO.ps1
+invoke-expression -Command .\DownloadZIPaddGPO.ps1
