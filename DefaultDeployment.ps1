@@ -77,6 +77,6 @@ else {
 
 $Deploymentfolder = "F:\Share\Deployment-Skripts"
 New-Item -ItemType Directory -Force -Path $Deploymentfolder
-Copy-Item .\AddGPO.ps1 $Deploymentfolder
-Copy-Item .\InstallSoftware.ps1 $Deploymentfolder
-Copy-Item .\ChangeLocatonSettings.ps1 $Deploymentfolder
+Copy-Item C:\Packages\Plugins\Microsoft.Compute.CustomScriptExtension\*\Downloads\*\AddGPO.ps1 $Deploymentfolder
+Copy-Item C:\Packages\Plugins\Microsoft.Compute.CustomScriptExtension\*\Downloads\*\InstallSoftware.ps1 $Deploymentfolder
+Copy-Item C:\Packages\Plugins\Microsoft.Compute.CustomScriptExtension\*\Downloads\*\ChangeLocatonSettings.ps1 $Deploymentfolder
