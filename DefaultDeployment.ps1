@@ -1,4 +1,5 @@
-﻿#Disk wird initialisiert und formatiert
+﻿###################################################################################
+#Disk wird initialisiert und formatiert
 Get-Disk | Where-Object PartitionStyle –Eq 'RAW' | Initialize-Disk
 
 New-Partition –DiskNumber 2 -AssignDriveLetter –UseMaximumSize
@@ -10,12 +11,14 @@ Format-Volume -DriveLetter F -FileSystem NTFS -Confirm:$false
 #Share auf Disk wird eingerichtet und Berechtigungen erteilt
 $Share = "F:\Share"
 mkdir $Share
-New-SmbShare -Name "Share" -Path $Share -ChangeAccess "Users" -FullAccess "Administrators","tdncloud.onmicrosoft.com\AAD DC Administrators"
+New-SmbShare -Name "Share" -Path $Share -ChangeAccess "Users" -FullAccess "Administrators","tonazzidemo.onmicrosoft.com\AAD DC Administrators"
 
+###################################################################################
 #Windows Features für die Verwaltung vom AD und der GPO werden installiert
 ADD-WindowsFeature -Name GPMC
 ADD-WindowsFeature -Name RSAT-Role-Tools
 
+###################################################################################
 #Regionsanpassungen werden gemacht
 Set-WinHomeLocation 223 
 Set-WinUserLanguageList -LanguageList de-CH -Force
@@ -25,7 +28,7 @@ Set-TimeZone -Id "W. Europe Standard Time" -PassThru
 Set-Culture -CultureInfo de-CH
 
 
-
+####################################################################################
 #Gruppenrichtlinien Backups werden heruntergeladen und extrahiert
 $Url = 'https://raw.githubusercontent.com/kevinkaufmann/Diplomarbeit/master/gpo.zip'
 $ZipFile = 'F:\Share\GPO\' + $(Split-Path -Path $Url -Leaf) 
@@ -40,6 +43,7 @@ Start-Process $Destination
 
 Remove-Item –path $ZipFile
 
+###################################################################################
 #Default Software wird heruntergeladen
 $Softwaredownload = "F:\Share\Software"
 
@@ -75,6 +79,8 @@ else {
     Write-Host ">> Download Complete"
 }
 
+####################################################################################
+#Vorbereitete Skripts werden auf dem Fileserver abgelegt
 $Deploymentfolder = "F:\Share\Deployment-Skripts"
 New-Item -ItemType Directory -Force -Path $Deploymentfolder
 Copy-Item C:\Packages\Plugins\Microsoft.Compute.CustomScriptExtension\*\Downloads\*\AddGPO.ps1 $Deploymentfolder
